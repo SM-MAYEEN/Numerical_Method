@@ -1,0 +1,47 @@
+
+Q;find Total significant digits of a number
+
+
+//     Bismillahir Rahmanir Raheem ( 'بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ)
+//     In the name of allah (SWT) the Merciful, the Compasionate
+//     author: mayeenuddinhasan
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int fun(double n)
+{
+    stringstream s;
+    s << n;
+    string str = s.str();
+    int cnt = 0;
+    bool f = false;
+
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (isdigit(str[i]))
+        {
+            if (str[i] != '0' || f)
+            {
+                cnt++;
+            }
+        }
+        else if (str[i] == '.')
+        {
+            f = true;
+        }
+    }
+
+    return cnt;
+}
+
+int main()
+{
+    double n;
+    cout << "Enter nber: ";
+    cin >> n;
+    int sign = fun(n);
+    cout << "Total sig_digits: " << sign << endl;
+
+    return 0;
+}
