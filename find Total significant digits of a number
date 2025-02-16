@@ -45,3 +45,41 @@ int main()
 
     return 0;
 }
+ 
+Q;Round the number choose the point.
+
+#include <bits/stdc++.h>
+using namespace std;
+
+double fun(double n, int place)
+{
+    double x =  pow(10, place);
+    double mid = n * x;
+    double y =  round(mid);
+    if ( fabs(mid - y) == 0.5)
+    {
+        if (static_cast<int>(y) % 2 != 0)
+        {
+            y = y - 1; 
+        }
+    }
+    return y / x;
+}
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        double n;
+        int place;
+        cout << "Enter a number: ";
+         cin >> n;
+         cout << "Enter the point round to: ";
+         cin >> place;
+         double res = fun(n, place);
+          cout << "y value: " <<  fixed <<  setprecision(place) << res <<  endl;
+    }
+    return 0;
+}
