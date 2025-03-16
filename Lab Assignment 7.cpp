@@ -4,51 +4,41 @@ using namespace std;
 
 
 double f(double x) {
-    return x * x * x - x + 2;
+    return pow(x, 3) - x + 2;
 }
 
-double falsePosition(double x1, double x2, double tolerance) {
-    if (f(x1) * f(x2) >= 0) {
-        cout << "Invalid interval [x1, x2]. f(x1) and f(x2) must have opposite signs." << endl;
-        return NAN;
-    }
+ double falsePosition(double a, double b, double tolerance) {
+    double c = a;
+    int iteration = 0;
 
-    double x0;
-    double x0_prev;
-    int iterations = 0;
+    cout << "Iteration\t a\t\t b\t\t c\t\t f(c)" << endl;
+    cout << "--------------------------------------------------------------" << endl;
 
-    do {
-        x0_prev = x0;
-        x0 = x1 - (f(x1) * (x2 - x1)) / (f(x2) - f(x1));
-        if (f(x0) == 0.0) {
+    while (abs(f(c)) >= tolerance) {
+
+        c = (a * f(b) - b * f(a)) / (f(b) - f(a));
+        cout << iteration + 1 << "\t\t " << fixed << setprecision(6) << a << "\t " << b << "\t " << c << "\t " << f(c) << endl;
+        if (f(c) == 0.0) {
             break;
         }
-
-        if (f(x0) * f(x1) < 0) {
-            x2 = x0;
+        if (f(c) * f(a) < 0) {
+            b = c;
         } else {
-            x1 = x0;
+            a = c;
         }
 
-        iterations++;
+        iteration++;
     }
-    while (fabs(x0 - x0_prev) >= tolerance);
 
-    cout << "Number of iterations: " << iterations << endl;
-    return x0;
+    return c;
 }
 
 int main() {
-    double x1, x2, tolerance;
-    cout << "Enter the interval [x1, x2]: ";
-    cin >> x1 >> x2;
-
-    tolerance = 1e-4;
-     double root = falsePosition(x1, x2, tolerance);
-     if (!isnan(root)) {
-        cout << "The root of the equation x^3 - x + 2 = 0 is: "
-             << fixed << setprecision(5) << root << endl;
-    }
+    double a = -2.0;
+    double b = 2.0;
+    double tolerance = 0.001;
+    double root = falsePosition(a, b, tolerance);
+    cout << "\nThe root of the equation x^3 - x + 2 = 0 is approximately: " << fixed << setprecision(3) << root << endl;
 
     return 0;
 }
