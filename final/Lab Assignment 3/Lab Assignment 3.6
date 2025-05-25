@@ -42,5 +42,113 @@ The entered matrix is:
 The determinant of the matrix is: -1
 
 */
+/*
+#include <iostream>
+#include <vector>
+#include <iomanip>
 
+using namespace std;
+
+ void getMatrix(vector<vector<double>>& matrix) {
+    cout << "Enter the elements of the 3x3 matrix:" << endl;
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            cout << "Enter element A[" << i + 1 << "][" << j + 1 << "]: ";
+            cin >> matrix[i][j];
+        }
+    }
+}
+
+ double getDeterminant(const vector<vector<double>>& matrix) {
+    double det = 0;
+    det = matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) -
+          matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
+          matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
+    return det;
+}
+
+ double getCofactor(const vector<vector<double>>& matrix, int row, int col) {
+    int sign = ((row + col) % 2 == 0) ? 1 : -1;
+    vector<vector<double>> subMatrix(2, vector<double>(2));
+    int sub_i = 0, sub_j = 0;
+
+    for (int i = 0; i < 3; ++i) {
+        if (i == row) continue;
+        sub_j = 0;
+        for (int j = 0; j < 3; ++j) {
+            if (j == col) continue;
+            subMatrix[sub_i][sub_j] = matrix[i][j];
+            sub_j++;
+        }
+        sub_i++;
+    }
+
+    double detSub = subMatrix[0][0] * subMatrix[1][1] - subMatrix[0][1] * subMatrix[1][0];
+    return sign * detSub;
+}
+
+
+ void getAdjugate(const vector<vector<double>>& matrix, vector<vector<double>>& adj) {
+     vector<vector<double>> cofactorMatrix(3, vector<double>(3));
+
+     for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            cofactorMatrix[i][j] = getCofactor(matrix, i, j);
+        }
+    }
+
+     for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            adj[i][j] = cofactorMatrix[j][i];
+        }
+    }
+}
+
+
+ void displayMatrix(const vector<vector<double>>& matrix) {
+    cout << fixed << setprecision(4);  
+    for (int i = 0; i < 3; ++i) {
+        cout << "| ";
+        for (int j = 0; j < 3; ++j) {
+            cout << setw(8) << matrix[i][j] << " ";
+        }
+        cout << "|" << endl;
+    }
+}
+
+int main() {
+    vector<vector<double>> A(3, vector<double>(3));
+    vector<vector<double>> A_inv(3, vector<double>(3));
+    vector<vector<double>> adjA(3, vector<double>(3));
+    getMatrix(A);
+
+    cout << "\nEntered Matrix A:" << endl;
+    displayMatrix(A);
+
+     double detA = getDeterminant(A);
+    cout << "\nDeterminant (det A) = " << detA << endl;
+
+     if (detA == 0) {
+        cout << "\nThe determinant is 0, so the inverse does not exist." << endl;
+    } else {
+        cout << "\nThe matrix is invertible." << endl;
+
+         getAdjugate(A, adjA);
+        cout << "\nAdjugate Matrix (adj A):" << endl;
+        displayMatrix(adjA);
+
+         for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                A_inv[i][j] = adjA[i][j] / detA;
+            }
+        }
+
+        cout << "\nInverse Matrix (A^-1):" << endl;
+        displayMatrix(A_inv);
+    }
+
+    return 0;
+}
+
+*/
 
