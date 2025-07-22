@@ -1,0 +1,19 @@
+Bismillahir Rahmanir Rahim
+ 
+Lab Assignment - 4
+CSE 4746 Numerical Methods
+
+1. Write a program to find the least square line y = a + bx for the following data
+x -2 -1 0 1 2
+y 1 2 3 4 5
+2. Write a program to find the least square parabola y = a + bx + cx 2 for the following data
+x 2 4 6 8
+y 1.4 2.0 2.4 2.8
+3. Write a program to find the best possible values of a and b from the relation y = ae bx for the
+following data:
+x 2 10 26 61
+y 600 500 400 350
+4. Write a program to solve the following Differential Equation by using Euler’s method.
+dy / dx = x 3 + y, y (0) = 1. Compute y (0.02) taking h = 0.01.
+5. Write a program to solve the following Differential Equation by using Runge – Kutta method.
+dy / dx = x + y, y (0) = 1. Compute y (0.1) and y (0.2) taking h = 0.1.
